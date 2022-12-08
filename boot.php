@@ -35,7 +35,7 @@ if ( (\rex::isBackend() && \rex::getUser()) && ( !\rex::getUser()->isAdmin()) ) 
             });
         }
     }
-    if (rex_request('table_name') == rex::getTablePrefix().'rex_yrewrite_domain_settings') {
+    if (rex_request('table_name') == rex::getTablePrefix().'yrewrite_domain_settings') {
         // Setze Filter
         rex_extension::register('YFORM_MANAGER_DATA_EDIT_FILTER', function ($ep) {
             $filter = $ep->getSubject();
