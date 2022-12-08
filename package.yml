@@ -1,0 +1,14 @@
+package: fr_domain_restrictions
+version: '1.0.0-beta'
+author: 'Stefan Brinkers'
+supportpage: https://github.com/anveno/fr_domain_restrictions
+
+# Abhängigkeiten
+# Anforderungen ans System oder anderere AddOns, um dieses AddOn installieren oder update zu können
+requires:
+  redaxo: '^5.12' # benötigt mindestens REDAXO 5.2
+  php:
+    version: '>=7.1' # benötigt mindestens PHP 7
+
+page:
+  hidden: true
