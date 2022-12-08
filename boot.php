@@ -11,36 +11,25 @@ if ( (\rex::isBackend() && \rex::getUser()) && ( !\rex::getUser()->isAdmin()) ) 
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// Wenn in bestimmten Gruppen, dann in Tabellen bestimmte Felder ausblenden:
+// Wenn in bestimmten Gruppen, dann in Tabellen das Feld domain_id deaktivieren:
 
 if ( (\rex::isBackend() && \rex::getUser()) && ( !\rex::getUser()->isAdmin()) ) {
+    // Check ob es das Feld "domain_id" gibt
+    $hasDomainField = fr_domain_restrictions::checkDomainField(rex_request('table_name'));
 
-    if (rex_request('table_name') != rex::getTablePrefix().'yrewrite_domain_settings') {
-        // Check ob es das Feld "domain" gibt
-        $hasDomainField = fr_domain_restrictions::checkDomainField(rex_request('table_name'));
-
-        if ($hasDomainField) {
-            // Setze Filter
-            rex_extension::register('YFORM_MANAGER_DATA_EDIT_FILTER', function ($ep) {
-                $filter = $ep->getSubject();
-                $filter = ['domain' => fr_domain_restrictions::restrictions()];
-                return $filter;
-            });
-
-            // Lege Felder und Werte Fest, die durch die User nicht bearbeitet werden können.
-            rex_extension::register('YFORM_MANAGER_DATA_EDIT_SET', function ($ep) {
-                $editset = $ep->getSubject();
-                $editset = ['domain' => fr_domain_restrictions::restrictions()];
-                return $editset;
-            });
-        }
-    }
-    if (rex_request('table_name') == rex::getTablePrefix().'yrewrite_domain_settings') {
+    if ($hasDomainField) {
         // Setze Filter
         rex_extension::register('YFORM_MANAGER_DATA_EDIT_FILTER', function ($ep) {
             $filter = $ep->getSubject();
             $filter = ['domain_id' => fr_domain_restrictions::restrictions()];
             return $filter;
+        });
+
+        // Lege Felder und Werte Fest, die durch die User nicht bearbeitet werden können.
+        rex_extension::register('YFORM_MANAGER_DATA_EDIT_SET', function ($ep) {
+            $editset = $ep->getSubject();
+            $editset = ['domain_id' => fr_domain_restrictions::restrictions()];
+            return $editset;
         });
     }
 }

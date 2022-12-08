@@ -22,9 +22,9 @@ class fr_domain_restrictions
     {
         if ($table) {
 
-            // prüfen ob die Tabelle ein Feld namens "domain" hat
+            // prüfen ob die Tabelle ein Feld namens "domain_id" hat
             $sql = rex_sql::factory();
-            $sql->setQuery("SHOW COLUMNS FROM `$table` LIKE 'domain'");
+            $sql->setQuery("SHOW COLUMNS FROM `$table` LIKE 'domain_id'");
 
             if ($sql->getRows()) {
                 return true;

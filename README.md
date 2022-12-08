@@ -1,7 +1,7 @@
 # REDAXO-AddOn: Domain Restrictions
 
 - Schränkt die Tabellen-Rechte von Nutzern je nach Domain-Einstellungen der Rolle ein.
-- Die Tabelle muss über ein Feld vom Typ **choice** mit Name **domain** verfügen.
+- Die Tabelle muss über ein Feld vom Typ **choice** mit Name **domain_id** verfügen.
 - Die Auswahlmöglichkeit für das Feld lautet: `SELECT id AS value, domain AS label FROM rex_yrewrite_domain ORDER BY domain ASC`
 
 ## Todos/Bugs:
